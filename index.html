@@ -1,0 +1,446 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+  .np-root {
+    background: #f2ead8;
+    color: #1a1208;
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 13.5px;
+    line-height: 1.55;
+    padding: 18px 20px 28px;
+    border: 2px solid #2a1f0a;
+    max-width: 760px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .np-root::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 0.5px solid #2a1f0a;
+    pointer-events: none;
+  }
+  .np-dateline {
+    text-align: center;
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    border-top: 2.5px solid #2a1f0a;
+    border-bottom: 0.5px solid #2a1f0a;
+    padding: 4px 0;
+    margin-bottom: 5px;
+  }
+  .np-masthead {
+    text-align: center;
+    padding: 6px 0 4px;
+    border-bottom: 2.5px solid #2a1f0a;
+    margin-bottom: 3px;
+  }
+  .np-masthead-title {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 48px;
+    line-height: 1.05;
+    color: #1a1208;
+    letter-spacing: 1px;
+  }
+  .np-masthead-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: #3a2a10;
+    margin: 2px 0 4px;
+  }
+  .np-masthead-rule {
+    border: none;
+    border-top: 0.5px solid #2a1f0a;
+    margin: 4px 0;
+  }
+  .np-edition-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 0.5px solid #2a1f0a;
+    border-bottom: 3px double #2a1f0a;
+    padding: 3px 0;
+    margin-bottom: 8px;
+  }
+  .np-headline {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1.1;
+    text-align: center;
+    margin: 0 0 3px;
+  }
+  .np-deck {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    color: #3a2a10;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .np-byline {
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-top: 0.5px solid #2a1f0a;
+    border-bottom: 0.5px solid #2a1f0a;
+    padding: 3px 0;
+    margin-bottom: 8px;
+  }
+  .np-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid #2a1f0a;
+  }
+  .np-col {
+    padding: 8px 10px;
+    border-right: 0.5px solid #2a1f0a;
+    box-sizing: border-box;
+  }
+  .np-col:last-child { border-right: none; }
+  .np-col-head {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid #2a1f0a;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+  }
+  .np-col p { margin: 0 0 6px; text-align: justify; }
+  .np-drop-cap::first-letter {
+    font-family: 'UnifrakturMaguntia', serif;
+    font-size: 44px;
+    float: left;
+    line-height: 0.75;
+    margin: 4px 4px 0 0;
+    color: #1a1208;
+  }
+  .np-img-box {
+    background: #e8ddc4;
+    border: 1px solid #2a1f0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .np-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+  .np-img-box img.loaded { display: block; }
+  .np-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 4px;
+    padding: 8px;
+  }
+  .np-img-box:hover .np-img-placeholder { opacity: 0.7; }
+  .np-img-icon {
+    font-size: 22px;
+    color: #5a4020;
+    opacity: 0.55;
+  }
+  .np-img-label {
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #5a4020;
+  }
+  .np-img-caption {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 9.5px;
+    text-align: center;
+    color: #5a4020;
+    margin-bottom: 7px;
+    line-height: 1.35;
+  }
+  .np-pullquote {
+    border-top: 2px solid #2a1f0a;
+    border-bottom: 2px solid #2a1f0a;
+    margin: 8px 0;
+    padding: 6px 4px;
+    text-align: center;
+  }
+  .np-pullquote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #2a1a08;
+  }
+  .np-wide {
+    grid-column: 1 / -1;
+    border-right: none;
+    border-top: 1px solid #2a1f0a;
+  }
+  .np-two-col {
+    grid-column: span 2;
+    border-right: 0.5px solid #2a1f0a;
+  }
+  .np-section-banner {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    border-top: 2px solid #2a1f0a;
+    border-bottom: 2px solid #2a1f0a;
+    padding: 3px 0;
+    margin: 0 0 0;
+    grid-column: 1 / -1;
+  }
+  .np-theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-top: 5px;
+  }
+  .np-theme-item {
+    border: 0.5px solid #2a1f0a;
+    padding: 4px 6px;
+    background: #ede3c8;
+  }
+  .np-theme-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .np-theme-desc {
+    font-size: 10px;
+    line-height: 1.35;
+    color: #3a2a10;
+  }
+  .np-folio {
+    border-top: 2px solid #2a1f0a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0 0;
+    margin-top: 8px;
+    font-family: 'IM Fell English', serif;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .np-ornament {
+    text-align: center;
+    font-size: 16px;
+    color: #5a4020;
+    margin: 4px 0;
+    letter-spacing: 6px;
+  }
+  .np-input-hidden {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+</style>
+
+<div class="np-root" id="poster">
+  <div class="np-dateline">Institute of Foreign Languages, Royal University of Phnom Penh &nbsp;·&nbsp; Academic Edition &nbsp;·&nbsp; Literature & Culture</div>
+
+  <div class="np-masthead">
+    <div class="np-masthead-sub">The Literary Quarterly of the Kingdom of Wonder</div>
+    <div class="np-masthead-title">The Apsara Gazette</div>
+    <hr class="np-masthead-rule">
+    <div style="display:flex;justify-content:space-between;font-family:'IM Fell English',serif;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;">
+      <span>Est. 2025 &nbsp;·&nbsp; No. 1</span>
+      <span>Price: One Memory</span>
+      <span>Siem Reap — Phnom Penh</span>
+    </div>
+  </div>
+
+  <div class="np-edition-bar">
+    <span>Vol. I</span>
+    <span>A Short Story by Y Pengly, Lean Rathana, Heng Sokun, Kong Devid, Kour Simhong &amp; Soth Saravottey</span>
+    <span>Special Edition</span>
+  </div>
+
+  <div class="np-headline">The Last Apsara</div>
+  <div class="np-deck">A Story of Love, Duty, and the Dance That Refused to Die</div>
+  <div class="np-byline">By Y Pengly &nbsp;·&nbsp; Lean Rathana &nbsp;·&nbsp; Heng Sokun &nbsp;·&nbsp; Kong Devid &nbsp;·&nbsp; Kour Simhong &nbsp;·&nbsp; Soth Saravottey</div>
+
+  <div class="np-body">
+
+    <div class="np-col">
+      <div class="np-col-head">Introduction</div>
+      <p class="np-drop-cap"><em>The Last Apsara</em> is the story of Sreyleak, a young woman who leaves her village near Siem Reap to pursue higher education in Phnom Penh. Behind her remains her grandmother, Yeay Chenda — the last Apsara dance master of their village.</p>
+      <p>As modernization pulls young people away from traditional culture, the story explores the difficult balance between personal ambition and cultural responsibility, asking what we owe to the traditions that shaped us.</p>
+
+      <div class="np-pullquote">
+        <div class="np-pullquote-text">"The dance only lives if someone remembers it."</div>
+      </div>
+
+      <div class="np-col-head" style="margin-top:8px;">The Courtyard at Dawn</div>
+      <p>In a small village near Siem Reap, Sreyleak learns the ancient Apsara dance from her grandmother. The dance is not merely movement — it is a living tradition, passed from generation to generation, carrying the soul of Khmer identity.</p>
+
+      <div class="np-col-head" style="margin-top:8px;">One by One, They Left</div>
+      <p>As young people depart for cities and new opportunities, fewer students remain. Eventually, Sreyleak becomes the only student left — the sole vessel of a tradition that had survived centuries.</p>
+    </div>
+
+    <div class="np-col">
+      <div class="np-col-head">The Story</div>
+
+      <div class="np-img-box" style="height:130px;" id="img1" onclick="document.getElementById('file1').click()">
+        <img id="img1-preview" alt="Apsara dancer">
+        <div class="np-img-placeholder" id="ph1">
+          <i class="ti ti-photo np-img-icon" aria-hidden="true"></i>
+          <div class="np-img-label">Insert Image</div>
+          <div class="np-img-label" style="font-size:8px;opacity:0.7">Click to upload</div>
+        </div>
+      </div>
+      <input type="file" accept="image/*" class="np-input-hidden" id="file1" onchange="loadImg(this,'img1-preview','ph1')">
+      <div class="np-img-caption">Fig. I — Sreyleak practises at dawn beneath the ancient trees.</div>
+
+      <div class="np-col-head">The Morning She Left</div>
+      <p>Sreyleak receives a scholarship to study at university in Phnom Penh. Though her grandmother supports her decision, leaving means stepping away from the tradition she was expected to inherit.</p>
+
+      <div class="np-col-head" style="margin-top:8px;">Years of Silence</div>
+      <p>Busy with university life and work, Sreyleak gradually loses touch with her cultural roots. She postpones returning home — until one day she learns that her grandmother has passed away.</p>
+
+      <div class="np-col-head" style="margin-top:8px;">The Dancing Shoes</div>
+      <p>After the funeral, Sreyleak discovers a new pair of dancing shoes left for her by her grandmother with a note: <em>"For Sreyleak. When you are ready."</em> Realising what she nearly lost, she chooses to continue teaching the dance and preserve the tradition.</p>
+    </div>
+
+    <div class="np-col">
+      <div class="np-col-head">Moral Truths</div>
+
+      <div class="np-img-box" style="height:110px;" id="img2" onclick="document.getElementById('file2').click()">
+        <img id="img2-preview" alt="Angkor Wat">
+        <div class="np-img-placeholder" id="ph2">
+          <i class="ti ti-building-arch np-img-icon" aria-hidden="true"></i>
+          <div class="np-img-label">Insert Image</div>
+          <div class="np-img-label" style="font-size:8px;opacity:0.7">Click to upload</div>
+        </div>
+      </div>
+      <input type="file" accept="image/*" class="np-input-hidden" id="file2" onchange="loadImg(this,'img2-preview','ph2')">
+      <div class="np-img-caption">Fig. II — Angkor Wat, symbol of Khmer heritage and enduring memory.</div>
+
+      <div class="np-col-head" style="margin-top:4px;">Ethical Egoism &amp; Its Limits</div>
+      <p>Sreyleak's pursuit of personal goals benefits her future but creates unintended consequences for her grandmother and for the preservation of the dance itself.</p>
+
+      <div class="np-col-head" style="margin-top:6px;">Love as Moral Action</div>
+      <p>Yeay Chenda demonstrates love through patience and faith rather than pressure. Her gift of the dancing shoes — left without resentment — shows that genuine love is expressed through sacrifice and understanding.</p>
+
+      <div class="np-pullquote">
+        <div class="np-pullquote-text">"Feel where the breath goes. The hand follows the breath."</div>
+      </div>
+
+      <div class="np-col-head" style="margin-top:4px;">Utilitarianism</div>
+      <p>Sreyleak's career as a teacher benefits many children. Yet the story reminds us that even the loneliness of a single individual still carries moral weight.</p>
+    </div>
+
+    <div class="np-section-banner">Main Themes &amp; Key Message</div>
+
+    <div class="np-two-col">
+      <div style="padding:8px 10px;">
+        <div class="np-col-head">Five Pillars of the Narrative</div>
+        <div class="np-theme-grid">
+          <div class="np-theme-item">
+            <div class="np-theme-title">Cultural Preservation</div>
+            <div class="np-theme-desc">Traditional practices survive only when people actively continue them.</div>
+          </div>
+          <div class="np-theme-item">
+            <div class="np-theme-title">Family Legacy</div>
+            <div class="np-theme-desc">Knowledge and values are passed through family bonds across generations.</div>
+          </div>
+          <div class="np-theme-item">
+            <div class="np-theme-title">Sacrifice &amp; Ambition</div>
+            <div class="np-theme-desc">Personal success sometimes demands the most difficult sacrifices.</div>
+          </div>
+          <div class="np-theme-item">
+            <div class="np-theme-title">Memory &amp; Identity</div>
+            <div class="np-theme-desc">Remembering cultural traditions helps shape who we are and where we belong.</div>
+          </div>
+        </div>
+        <div class="np-theme-item" style="margin-top:5px;">
+          <div class="np-theme-title">Responsibility</div>
+          <div class="np-theme-desc">Each generation bears a duty to protect valuable traditions for those who follow.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="np-col" style="border-right:none;">
+      <div class="np-col-head">Conclusion</div>
+
+      <div class="np-img-box" style="height:90px;" id="img3" onclick="document.getElementById('file3').click()">
+        <img id="img3-preview" alt="Lotus flowers">
+        <div class="np-img-placeholder" id="ph3">
+          <i class="ti ti-flower np-img-icon" aria-hidden="true"></i>
+          <div class="np-img-label">Insert Image</div>
+          <div class="np-img-label" style="font-size:8px;opacity:0.7">Click to upload</div>
+        </div>
+      </div>
+      <input type="file" accept="image/*" class="np-input-hidden" id="file3" onchange="loadImg(this,'img3-preview','ph3')">
+      <div class="np-img-caption">Fig. III — The lotus: symbol of renewal and cultural rebirth.</div>
+
+      <p><em>The Last Apsara</em> highlights the tension between modern opportunities and cultural preservation. Through Sreyleak's journey, the story shows that success is not only about moving forward — it is also about remembering where we come from.</p>
+      <p>The survival of cultural heritage depends on the choices made by each new generation. It is a gift that can only be kept by giving it away.</p>
+    </div>
+
+    <div class="np-wide" style="padding:6px 10px;text-align:center;">
+      <div class="np-ornament">❧ &nbsp; ✦ &nbsp; ❧</div>
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.5;max-width:580px;margin:0 auto;">
+        "The dance only lives if someone remembers it. And when Sreyleak slipped on those shoes, she understood at last — <br>remembering is an act of love."
+      </div>
+      <div class="np-ornament" style="margin-top:6px;">❧ &nbsp; ✦ &nbsp; ❧</div>
+    </div>
+
+  </div>
+
+  <div class="np-folio">
+    <span>The Apsara Gazette</span>
+    <span>⬥ &nbsp; Institute of Foreign Languages &nbsp; — &nbsp; Royal University of Phnom Penh &nbsp; ⬥</span>
+    <span>Page One</span>
+  </div>
+</div>
+
+<script>
+function loadImg(input, previewId, placeholderId) {
+  var file = input.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = document.getElementById(previewId);
+    var ph = document.getElementById(placeholderId);
+    img.src = e.target.result;
+    img.classList.add('loaded');
+    ph.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+</script>
